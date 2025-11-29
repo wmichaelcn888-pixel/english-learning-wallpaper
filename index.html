@@ -14,7 +14,7 @@
       body {
         background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
         min-height: 100vh;
-        padding: 20px;
+        padding: 12px;
         font-family: Arial, sans-serif;
         color: #ffffff;
       }
@@ -26,60 +26,60 @@
 
       .header {
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 15px;
       }
 
       .header h1 {
-        font-size: 44px;
-        margin-bottom: 10px;
+        font-size: 32px;
+        margin-bottom: 6px;
         text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
       }
 
       .header p {
-        font-size: 22px;
+        font-size: 16px;
         color: #e0e0e0;
       }
 
       .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-        gap: 20px;
-        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
       }
 
       .card {
         background: rgba(255, 255, 255, 0.05);
-        border-radius: 15px;
-        padding: 25px;
+        border-radius: 10px;
+        padding: 6px;
         border: 2px solid;
         backdrop-filter: blur(10px);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px;
       }
 
       .card.red {
-        border-color: #e94560;
+        border-color: rgb(233, 69, 96, 0.2);
       }
       .card.orange {
-        border-color: #f39c12;
+        border-color: rgb(243, 156, 18, 0.2);
       }
       .card.blue {
-        border-color: #3498db;
+        border-color: rgb(52, 152, 219, 0.2);
       }
       .card.green {
-        border-color: #2ecc71;
+        border-color: rgb(46, 204, 113, 0.2);
       }
       .card.purple {
-        border-color: #9b59b6;
+        border-color: rgb(155, 89, 182, 0.2);
       }
       .card.pink {
-        border-color: #e91e63;
+        border-color: rgb(233, 30, 99, 0.2);
       }
 
       .card-title {
-        font-size: 24px;
+        flex-basis: 100%;
+        font-size: 14px;
         font-weight: bold;
-        margin-bottom: 15px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid rgba(255, 255, 255, 0.2);
       }
 
       .card.red .card-title {
@@ -101,10 +101,36 @@
         color: #e91e63;
       }
 
+      .section-wrapper {
+        flex: 1 1 300px;
+        max-width: 450px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        padding: 8px;
+      }
+
+      .section-header {
+        flex-basis: auto;
+        flex-shrink: 0;
+        font-size: 13px;
+        font-weight: bold;
+        color: #ffffff;
+        margin-bottom: 6px;
+        padding: 0 0 0 8px;
+        border-left: 3px solid #f39c12;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
       .item {
         display: flex;
+        gap: 8px;
         align-items: center;
-        padding: 8px 0;
+        padding: 1px 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       }
 
@@ -113,59 +139,85 @@
       }
 
       .letters {
-        min-width: 80px;
+        flex: 2;
         font-weight: bold;
-        font-size: 17px;
+        font-size: 13px;
         color: #ffffff;
       }
 
       .phonetics {
-        min-width: 180px;
-        font-size: 16px;
+        flex: 2;
+        font-size: 13px;
         color: #f39c12;
-        font-family: "Courier New", monospace;
+        font-family: 'Courier New', monospace;
       }
 
       .examples {
-        flex: 1;
-        font-size: 15px;
+        flex: 6;
+        font-size: 13px;
         color: #cccccc;
-      }
-
-      .section-header {
-        font-size: 18px;
-        font-weight: bold;
-        color: #ffffff;
-        margin: 15px 0 10px 0;
-        padding-left: 10px;
-        border-left: 4px solid #f39c12;
-      }
-
-      .footer {
-        text-align: center;
-        margin-top: 30px;
-        padding: 20px;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-        color: #999999;
-        font-size: 16px;
       }
 
       .star {
         color: #ffd700;
       }
 
-      @media (max-width: 768px) {
-        .grid {
-          grid-template-columns: 1fr;
+      /* 大屏优化 */
+      @media (min-width: 1600px) {
+        .section-wrapper {
+          flex: 1 1 350px;
+          max-width: 500px;
         }
+      }
+
+      /* 平板 */
+      @media (max-width: 1024px) {
+        .section-wrapper {
+          flex: 1 1 45%;
+          max-width: none;
+        }
+      }
+
+      /* 手机 */
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+        }
+        .header h1 {
+          font-size: 26px;
+        }
+        .header p {
+          font-size: 14px;
+        }
+        .card {
+          padding: 10px;
+        }
+        .card-title {
+          font-size: 16px;
+        }
+        .section-wrapper {
+          flex: 1 1 100%;
+          max-width: none;
+        }
+        .letters,
+        .phonetics,
+        .examples {
+          font-size: 12px;
+        }
+      }
+
+      /* 超小屏幕 */
+      @media (max-width: 480px) {
         .item {
           flex-direction: column;
           align-items: flex-start;
+          gap: 4px;
         }
         .letters,
-        .phonetics {
-          min-width: auto;
-          margin-bottom: 5px;
+        .phonetics,
+        .examples {
+          flex: none;
+          width: 100%;
         }
       }
     </style>
@@ -185,224 +237,189 @@
             <span class="star">⭐</span>
           </div>
 
-          <div class="section-header">ea 组合 (4种发音)</div>
-          <div class="item">
-            <div class="letters">ea</div>
-            <div class="phonetics">/iː/</div>
-            <div class="examples">tea, meat, clean, speak</div>
-          </div>
-          <div class="item">
-            <div class="letters">ea</div>
-            <div class="phonetics">/e/</div>
-            <div class="examples">bread, head, weather, ready</div>
-          </div>
-          <div class="item">
-            <div class="letters">ea</div>
-            <div class="phonetics">/eɪ/</div>
-            <div class="examples">great, break, steak</div>
-          </div>
-          <div class="item">
-            <div class="letters">ea</div>
-            <div class="phonetics">/ɪə/</div>
-            <div class="examples">idea, real, theatre</div>
+          <div class="section-wrapper">
+            <div class="section-header">ae 组合 (拉丁/希腊词源)</div>
+            <div class="item">
+              <div class="letters">ae</div>
+              <div class="phonetics">/iː/</div>
+              <div class="examples">aesthetic, archaeology, Caesar, aeon</div>
+            </div>
+            <div class="item">
+              <div class="letters">ae</div>
+              <div class="phonetics">/e/</div>
+              <div class="examples">aerial, aeroplane (美式发音)</div>
+            </div>
           </div>
 
-          <div class="section-header">ou 组合 (4种发音)</div>
-          <div class="item">
-            <div class="letters">ou</div>
-            <div class="phonetics">/aʊ/</div>
-            <div class="examples">house, out, loud, south</div>
-          </div>
-          <div class="item">
-            <div class="letters">ou</div>
-            <div class="phonetics">/əʊ/</div>
-            <div class="examples">soul, shoulder, mould</div>
-          </div>
-          <div class="item">
-            <div class="letters">ou</div>
-            <div class="phonetics">/ʌ/</div>
-            <div class="examples">country, young, trouble</div>
-          </div>
-          <div class="item">
-            <div class="letters">ou</div>
-            <div class="phonetics">/uː/</div>
-            <div class="examples">soup, group, you</div>
+          <div class="section-wrapper">
+            <div class="section-header">au 组合 (3种发音)</div>
+            <div class="item">
+              <div class="letters">au</div>
+              <div class="phonetics">/ɔː/</div>
+              <div class="examples">autumn, cause, author</div>
+            </div>
+            <div class="item">
+              <div class="letters">au</div>
+              <div class="phonetics">/ɑː/</div>
+              <div class="examples">laugh, aunt</div>
+            </div>
+            <div class="item">
+              <div class="letters">au</div>
+              <div class="phonetics">/əʊ/</div>
+              <div class="examples">chauffeur, Claude</div>
+            </div>
           </div>
 
-          <div class="section-header">oo 组合 (3种发音)</div>
-          <div class="item">
-            <div class="letters">oo</div>
-            <div class="phonetics">/uː/</div>
-            <div class="examples">food, moon, school, cool</div>
-          </div>
-          <div class="item">
-            <div class="letters">oo</div>
-            <div class="phonetics">/ʊ/</div>
-            <div class="examples">book, good, look, cook</div>
-          </div>
-          <div class="item">
-            <div class="letters">oo</div>
-            <div class="phonetics">/ʌ/</div>
-            <div class="examples">blood, flood</div>
-          </div>
-
-          <div class="section-header">ow 组合 (位置不同发音不同)</div>
-          <div class="item">
-            <div class="letters">ow</div>
-            <div class="phonetics">/əʊ/</div>
-            <div class="examples">snow, know, show, grow</div>
-          </div>
-          <div class="item">
-            <div class="letters">ow</div>
-            <div class="phonetics">/aʊ/</div>
-            <div class="examples">now, cow, how, brown</div>
-          </div>
-        </div>
-
-        <!-- 多音元音组合 2 -->
-        <div class="card red">
-          <div class="card-title">
-            多音元音组合
-            <span class="star">⭐</span>
-            (续)
+          <div class="section-wrapper">
+            <div class="section-header">ea 组合 (4种发音)</div>
+            <div class="item">
+              <div class="letters">ea</div>
+              <div class="phonetics">/iː/</div>
+              <div class="examples">tea, meat, clean, speak</div>
+            </div>
+            <div class="item">
+              <div class="letters">ea</div>
+              <div class="phonetics">/e/</div>
+              <div class="examples">bread, head, weather, ready</div>
+            </div>
+            <div class="item">
+              <div class="letters">ea</div>
+              <div class="phonetics">/eɪ/</div>
+              <div class="examples">great, break, steak</div>
+            </div>
+            <div class="item">
+              <div class="letters">ea</div>
+              <div class="phonetics">/ɪə/</div>
+              <div class="examples">idea, real, theatre</div>
+            </div>
           </div>
 
-          <div class="section-header">ie 组合 (3种发音)</div>
-          <div class="item">
-            <div class="letters">ie</div>
-            <div class="phonetics">/iː/</div>
-            <div class="examples">piece, field, believe, chief</div>
-          </div>
-          <div class="item">
-            <div class="letters">ie</div>
-            <div class="phonetics">/aɪ/</div>
-            <div class="examples">lie, die, tie, pie</div>
-          </div>
-          <div class="item">
-            <div class="letters">ie</div>
-            <div class="phonetics">/ɪ/</div>
-            <div class="examples">movie, cookie, auntie</div>
-          </div>
-
-          <div class="section-header">au 组合 (3种发音)</div>
-          <div class="item">
-            <div class="letters">au</div>
-            <div class="phonetics">/ɔː/</div>
-            <div class="examples">autumn, cause, author</div>
-          </div>
-          <div class="item">
-            <div class="letters">au</div>
-            <div class="phonetics">/ɑː/</div>
-            <div class="examples">laugh, aunt</div>
-          </div>
-          <div class="item">
-            <div class="letters">au</div>
-            <div class="phonetics">/əʊ/</div>
-            <div class="examples">chauffeur, Claude</div>
+          <div class="section-wrapper">
+            <div class="section-header">ei 组合 (3种发音)</div>
+            <div class="item">
+              <div class="letters">ei</div>
+              <div class="phonetics">/eɪ/</div>
+              <div class="examples">vein, eight, weight</div>
+            </div>
+            <div class="item">
+              <div class="letters">ei</div>
+              <div class="phonetics">/iː/</div>
+              <div class="examples">receive, ceiling, deceive</div>
+            </div>
+            <div class="item">
+              <div class="letters">ei</div>
+              <div class="phonetics">/aɪ/</div>
+              <div class="examples">height, sleight</div>
+            </div>
           </div>
 
-          <div class="section-header">ei 组合 (3种发音)</div>
-          <div class="item">
-            <div class="letters">ei</div>
-            <div class="phonetics">/eɪ/</div>
-            <div class="examples">vein, eight, weight</div>
-          </div>
-          <div class="item">
-            <div class="letters">ei</div>
-            <div class="phonetics">/iː/</div>
-            <div class="examples">receive, ceiling, deceive</div>
-          </div>
-          <div class="item">
-            <div class="letters">ei</div>
-            <div class="phonetics">/aɪ/</div>
-            <div class="examples">height, sleight</div>
-          </div>
-
-          <div class="section-header">ey 组合 (2种发音)</div>
-          <div class="item">
-            <div class="letters">ey</div>
-            <div class="phonetics">/iː/</div>
-            <div class="examples">key, monkey, money</div>
-          </div>
-          <div class="item">
-            <div class="letters">ey</div>
-            <div class="phonetics">/eɪ/</div>
-            <div class="examples">they, grey, obey</div>
-          </div>
-        </div>
-
-        <!-- ough 特殊组合 -->
-        <div class="card orange">
-          <div class="card-title">
-            ough 超级多音组合
-            <span class="star">⭐⭐⭐</span>
-          </div>
-          <div class="section-header">ough 组合 (6种发音，英语中最复杂的组合)</div>
-          <div class="item">
-            <div class="letters">ough</div>
-            <div class="phonetics">/ʌf/</div>
-            <div class="examples">enough, rough, tough</div>
-          </div>
-          <div class="item">
-            <div class="letters">ough</div>
-            <div class="phonetics">/əʊ/</div>
-            <div class="examples">though, dough, although</div>
-          </div>
-          <div class="item">
-            <div class="letters">ough</div>
-            <div class="phonetics">/ɔː/</div>
-            <div class="examples">thought, bought, brought</div>
-          </div>
-          <div class="item">
-            <div class="letters">ough</div>
-            <div class="phonetics">/uː/</div>
-            <div class="examples">through</div>
-          </div>
-          <div class="item">
-            <div class="letters">ough</div>
-            <div class="phonetics">/ɒf/</div>
-            <div class="examples">cough</div>
-          </div>
-          <div class="item">
-            <div class="letters">ough</div>
-            <div class="phonetics">/aʊ/</div>
-            <div class="examples">plough, bough</div>
+          <div class="section-wrapper">
+            <div class="section-header">ey 组合 (3种发音)</div>
+            <div class="item">
+              <div class="letters">ey</div>
+              <div class="phonetics">/iː/</div>
+              <div class="examples">key, monkey, money</div>
+            </div>
+            <div class="item">
+              <div class="letters">ey</div>
+              <div class="phonetics">/eɪ/</div>
+              <div class="examples">they, grey, obey</div>
+            </div>
+            <div class="item">
+              <div class="letters">ey</div>
+              <div class="phonetics">/ɪ/</div>
+              <div class="examples">valley, turkey, honey, journey</div>
+            </div>
           </div>
 
-          <div class="section-header">ue 组合 (2种发音)</div>
-          <div class="item">
-            <div class="letters">ue</div>
-            <div class="phonetics">/juː/</div>
-            <div class="examples">value, continue, argue</div>
-          </div>
-          <div class="item">
-            <div class="letters">ue</div>
-            <div class="phonetics">/uː/</div>
-            <div class="examples">blue, true, glue</div>
-          </div>
-
-          <div class="section-header">ui 组合 (2种发音)</div>
-          <div class="item">
-            <div class="letters">ui</div>
-            <div class="phonetics">/uː/</div>
-            <div class="examples">fruit, juice, suit</div>
-          </div>
-          <div class="item">
-            <div class="letters">ui</div>
-            <div class="phonetics">/ɪ/</div>
-            <div class="examples">build, guitar, biscuit</div>
+          <div class="section-wrapper">
+            <div class="section-header">ie 组合 (3种发音)</div>
+            <div class="item">
+              <div class="letters">ie</div>
+              <div class="phonetics">/iː/</div>
+              <div class="examples">piece, field, believe, chief</div>
+            </div>
+            <div class="item">
+              <div class="letters">ie</div>
+              <div class="phonetics">/aɪ/</div>
+              <div class="examples">lie, die, tie, pie</div>
+            </div>
+            <div class="item">
+              <div class="letters">ie</div>
+              <div class="phonetics">/ɪ/</div>
+              <div class="examples">movie, cookie, auntie</div>
+            </div>
           </div>
 
-          <div class="section-header">ew 组合 (2种发音)</div>
-          <div class="item">
-            <div class="letters">ew</div>
-            <div class="phonetics">/juː/</div>
-            <div class="examples">new, few, view</div>
+          <div class="section-wrapper">
+            <div class="section-header">oe 组合 (2种发音)</div>
+            <div class="item">
+              <div class="letters">oe</div>
+              <div class="phonetics">/əʊ/</div>
+              <div class="examples">toe, doe, foe, goes, heroes</div>
+            </div>
+            <div class="item">
+              <div class="letters">oe</div>
+              <div class="phonetics">/uː/</div>
+              <div class="examples">shoe, canoe</div>
+            </div>
           </div>
-          <div class="item">
-            <div class="letters">ew</div>
-            <div class="phonetics">/uː/</div>
-            <div class="examples">grew, flew, drew</div>
+
+          <div class="section-wrapper">
+            <div class="section-header">ou 组合 (4种发音)</div>
+            <div class="item">
+              <div class="letters">ou</div>
+              <div class="phonetics">/aʊ/</div>
+              <div class="examples">house, out, loud, south</div>
+            </div>
+            <div class="item">
+              <div class="letters">ou</div>
+              <div class="phonetics">/əʊ/</div>
+              <div class="examples">soul, shoulder, mould</div>
+            </div>
+            <div class="item">
+              <div class="letters">ou</div>
+              <div class="phonetics">/ʌ/</div>
+              <div class="examples">country, young, trouble</div>
+            </div>
+            <div class="item">
+              <div class="letters">ou</div>
+              <div class="phonetics">/uː/</div>
+              <div class="examples">soup, group, you</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">oo 组合 (3种发音)</div>
+            <div class="item">
+              <div class="letters">oo</div>
+              <div class="phonetics">/uː/</div>
+              <div class="examples">food, moon, school, cool</div>
+            </div>
+            <div class="item">
+              <div class="letters">oo</div>
+              <div class="phonetics">/ʊ/</div>
+              <div class="examples">book, good, look, cook</div>
+            </div>
+            <div class="item">
+              <div class="letters">oo</div>
+              <div class="phonetics">/ʌ/</div>
+              <div class="examples">blood, flood</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">ow 组合 (位置不同发音不同)</div>
+            <div class="item">
+              <div class="letters">ow</div>
+              <div class="phonetics">/əʊ/</div>
+              <div class="examples">snow, know, show, grow</div>
+            </div>
+            <div class="item">
+              <div class="letters">ow</div>
+              <div class="phonetics">/aʊ/</div>
+              <div class="examples">now, cow, how, brown</div>
+            </div>
           </div>
         </div>
 
@@ -410,497 +427,488 @@
         <div class="card blue">
           <div class="card-title">单音元音组合</div>
 
-          <div class="item">
-            <div class="letters">ai</div>
-            <div class="phonetics">/eɪ/</div>
-            <div class="examples">rain, wait, train, pain</div>
+          <div class="section-wrapper">
+            <div class="item">
+              <div class="letters">ai</div>
+              <div class="phonetics">/eɪ/</div>
+              <div class="examples">rain, wait, train, pain</div>
+            </div>
+            <div class="item">
+              <div class="letters">ay</div>
+              <div class="phonetics">/eɪ/</div>
+              <div class="examples">day, say, play, may</div>
+            </div>
+            <div class="item">
+              <div class="letters">ee</div>
+              <div class="phonetics">/iː/</div>
+              <div class="examples">see, tree, three, free</div>
+            </div>
           </div>
-          <div class="item">
-            <div class="letters">ay</div>
-            <div class="phonetics">/eɪ/</div>
-            <div class="examples">day, say, play, may</div>
+
+          <div class="section-wrapper">
+            <div class="item">
+              <div class="letters">eu</div>
+              <div class="phonetics">/juː/</div>
+              <div class="examples">Europe, feud, neutral, euro</div>
+            </div>
+            <div class="item">
+              <div class="letters">oa</div>
+              <div class="phonetics">/əʊ/</div>
+              <div class="examples">boat, coat, road, soap</div>
+            </div>
+            <div class="item">
+              <div class="letters">oi</div>
+              <div class="phonetics">/ɔɪ/</div>
+              <div class="examples">coin, oil, point, join</div>
+            </div>
           </div>
-          <div class="item">
-            <div class="letters">ee</div>
-            <div class="phonetics">/iː/</div>
-            <div class="examples">see, tree, three, free</div>
+
+          <div class="section-wrapper">
+            <div class="item">
+              <div class="letters">oy</div>
+              <div class="phonetics">/ɔɪ/</div>
+              <div class="examples">boy, toy, joy, enjoy</div>
+            </div>
+            <div class="item">
+              <div class="letters">aw</div>
+              <div class="phonetics">/ɔː/</div>
+              <div class="examples">law, draw, saw, raw</div>
+            </div>
+            <div class="item">
+              <div class="letters">igh</div>
+              <div class="phonetics">/aɪ/</div>
+              <div class="examples">light, night, high, right</div>
+            </div>
           </div>
-          <div class="item">
-            <div class="letters">oa</div>
-            <div class="phonetics">/əʊ/</div>
-            <div class="examples">boat, coat, road, soap</div>
-          </div>
-          <div class="item">
-            <div class="letters">oi</div>
-            <div class="phonetics">/ɔɪ/</div>
-            <div class="examples">coin, oil, point, join</div>
-          </div>
-          <div class="item">
-            <div class="letters">oy</div>
-            <div class="phonetics">/ɔɪ/</div>
-            <div class="examples">boy, toy, joy, enjoy</div>
-          </div>
-          <div class="item">
-            <div class="letters">aw</div>
-            <div class="phonetics">/ɔː/</div>
-            <div class="examples">law, draw, saw, raw</div>
-          </div>
-          <div class="item">
-            <div class="letters">igh</div>
-            <div class="phonetics">/aɪ/</div>
-            <div class="examples">light, night, high, right</div>
-          </div>
-          <div class="item">
-            <div class="letters">eigh</div>
-            <div class="phonetics">/eɪ/</div>
-            <div class="examples">eight, weight, neighbor</div>
-          </div>
-          <div class="item">
-            <div class="letters">aigh</div>
-            <div class="phonetics">/eɪ/</div>
-            <div class="examples">straight</div>
-          </div>
-          <div class="item">
-            <div class="letters">augh</div>
-            <div class="phonetics">/ɔː/</div>
-            <div class="examples">taught, daughter, caught</div>
+
+          <div class="section-wrapper">
+            <div class="item">
+              <div class="letters">eigh</div>
+              <div class="phonetics">/eɪ/</div>
+              <div class="examples">eight, weight, neighbor</div>
+            </div>
+            <div class="item">
+              <div class="letters">aigh</div>
+              <div class="phonetics">/eɪ/</div>
+              <div class="examples">straight</div>
+            </div>
+            <div class="item">
+              <div class="letters">augh</div>
+              <div class="phonetics">/ɔː/</div>
+              <div class="examples">taught, daughter, caught</div>
+            </div>
           </div>
         </div>
 
-        <!-- R控制元音 1 -->
+        <!-- R控制元音-->
         <div class="card green">
           <div class="card-title">
             R控制元音
             <span class="star">⭐</span>
           </div>
 
-          <div class="section-header">ar 组合 (R影响元音发音)</div>
-          <div class="item">
-            <div class="letters">ar</div>
-            <div class="phonetics">/ɑː/</div>
-            <div class="examples">car, star, park, hard</div>
-          </div>
-          <div class="item">
-            <div class="letters">ar</div>
-            <div class="phonetics">/ɔː/</div>
-            <div class="examples">war, warm, quarter</div>
-          </div>
-
-          <div class="section-header">er 组合 (重读和非重读不同)</div>
-          <div class="item">
-            <div class="letters">er</div>
-            <div class="phonetics">/ɜː/</div>
-            <div class="examples">her, term, person, serve</div>
-          </div>
-          <div class="item">
-            <div class="letters">er</div>
-            <div class="phonetics">/ə/</div>
-            <div class="examples">teacher, water, better</div>
+          <div class="section-wrapper">
+            <div class="section-header">ar 组合 (R影响元音发音)</div>
+            <div class="item">
+              <div class="letters">ar</div>
+              <div class="phonetics">/ɑː/</div>
+              <div class="examples">car, star, park, hard</div>
+            </div>
+            <div class="item">
+              <div class="letters">ar</div>
+              <div class="phonetics">/ɔː/</div>
+              <div class="examples">war, warm, quarter</div>
+            </div>
           </div>
 
-          <div class="item">
-            <div class="letters">ir</div>
-            <div class="phonetics">/ɜː/</div>
-            <div class="examples">bird, girl, first, shirt</div>
+          <div class="section-wrapper">
+            <div class="section-header">er 组合 (重读和非重读不同)</div>
+            <div class="item">
+              <div class="letters">er</div>
+              <div class="phonetics">/ɜː/</div>
+              <div class="examples">her, term, person, serve</div>
+            </div>
+            <div class="item">
+              <div class="letters">er</div>
+              <div class="phonetics">/ə/</div>
+              <div class="examples">teacher, water, better</div>
+            </div>
           </div>
 
-          <div class="item">
-            <div class="letters">ur</div>
-            <div class="phonetics">/ɜː/</div>
-            <div class="examples">turn, burn, hurt, nurse</div>
+          <div class="section-wrapper">
+            <div class="section-header">or 组合 (2种发音)</div>
+            <div class="item">
+              <div class="letters">or</div>
+              <div class="phonetics">/ɔː/</div>
+              <div class="examples">for, horse, morning, short</div>
+            </div>
+            <div class="item">
+              <div class="letters">or</div>
+              <div class="phonetics">/ɜː/</div>
+              <div class="examples">work, word, worth, world</div>
+            </div>
           </div>
 
-          <div class="section-header">or 组合 (2种发音)</div>
-          <div class="item">
-            <div class="letters">or</div>
-            <div class="phonetics">/ɔː/</div>
-            <div class="examples">for, horse, morning, short</div>
-          </div>
-          <div class="item">
-            <div class="letters">or</div>
-            <div class="phonetics">/ɜː/</div>
-            <div class="examples">work, word, worth, world</div>
+          <div class="section-wrapper">
+            <div class="section-header">ear 组合 (4种发音)</div>
+            <div class="item">
+              <div class="letters">ear</div>
+              <div class="phonetics">/ɪə/</div>
+              <div class="examples">hear, year, clear, dear</div>
+            </div>
+            <div class="item">
+              <div class="letters">ear</div>
+              <div class="phonetics">/ɜː/</div>
+              <div class="examples">learn, earth, early, search</div>
+            </div>
+            <div class="item">
+              <div class="letters">ear</div>
+              <div class="phonetics">/eə/</div>
+              <div class="examples">bear, wear, pear, tear</div>
+            </div>
+            <div class="item">
+              <div class="letters">ear</div>
+              <div class="phonetics">/ɑː/</div>
+              <div class="examples">heart</div>
+            </div>
           </div>
 
-          <div class="item">
-            <div class="letters">are</div>
-            <div class="phonetics">/eə/</div>
-            <div class="examples">care, share, rare, dare</div>
+          <div class="section-wrapper">
+            <div class="section-header">oor 组合 (2种发音)</div>
+            <div class="item">
+              <div class="letters">oor</div>
+              <div class="phonetics">/ɔː/</div>
+              <div class="examples">door, floor</div>
+            </div>
+            <div class="item">
+              <div class="letters">oor</div>
+              <div class="phonetics">/ʊə/</div>
+              <div class="examples">poor, moor</div>
+            </div>
           </div>
 
-          <div class="item">
-            <div class="letters">air</div>
-            <div class="phonetics">/eə/</div>
-            <div class="examples">hair, fair, pair, chair</div>
+          <div class="section-wrapper">
+            <div class="section-header">our 组合 (3种发音)</div>
+            <div class="item">
+              <div class="letters">our</div>
+              <div class="phonetics">/ɔː/</div>
+              <div class="examples">four, pour, court</div>
+            </div>
+            <div class="item">
+              <div class="letters">our</div>
+              <div class="phonetics">/aʊə/</div>
+              <div class="examples">hour, sour, flour</div>
+            </div>
+            <div class="item">
+              <div class="letters">our</div>
+              <div class="phonetics">/ə/</div>
+              <div class="examples">colour, favour, honour</div>
+            </div>
+            <div class="item">
+              <div class="letters">oar</div>
+              <div class="phonetics">/ɔː/</div>
+              <div class="examples">board, roar, soar, coarse</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">yr 组合 (希腊词源)</div>
+            <div class="item">
+              <div class="letters">yr</div>
+              <div class="phonetics">/ɜː/</div>
+              <div class="examples">myrtle, martyr</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="item">
+              <div class="letters">ir</div>
+              <div class="phonetics">/ɜː/</div>
+              <div class="examples">bird, girl, first, shirt</div>
+            </div>
+            <div class="item">
+              <div class="letters">ur</div>
+              <div class="phonetics">/ɜː/</div>
+              <div class="examples">turn, burn, hurt, nurse</div>
+            </div>
+            <div class="item">
+              <div class="letters">are</div>
+              <div class="phonetics">/eə/</div>
+              <div class="examples">care, share, rare, dare</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="item">
+              <div class="letters">air</div>
+              <div class="phonetics">/eə/</div>
+              <div class="examples">hair, fair, pair, chair</div>
+            </div>
+            <div class="item">
+              <div class="letters">eer</div>
+              <div class="phonetics">/ɪə/</div>
+              <div class="examples">beer, deer, cheer, career</div>
+            </div>
           </div>
         </div>
 
-        <!-- R控制元音 2 -->
+        <!-- L控制元音 -->
         <div class="card green">
-          <div class="card-title">
-            R控制元音
-            <span class="star">⭐</span>
-            (续)
+          <div class="card-title">L控制元音 (L影响前面元音发音)</div>
+
+          <div class="section-wrapper">
+            <div class="section-header">al 组合 (2种发音)</div>
+            <div class="item">
+              <div class="letters">al</div>
+              <div class="phonetics">/ɔː/</div>
+              <div class="examples">talk, walk, ball, call</div>
+            </div>
+            <div class="item">
+              <div class="letters">al</div>
+              <div class="phonetics">/æl/</div>
+              <div class="examples">pal, gal, shall, also</div>
+            </div>
+            <div class="item">
+              <div class="letters">al</div>
+              <div class="phonetics">/əl/</div>
+              <div class="examples">animal, natural, national, final</div>
+            </div>
           </div>
 
-          <div class="section-header">ear 组合 (4种发音)</div>
-          <div class="item">
-            <div class="letters">ear</div>
-            <div class="phonetics">/ɪə/</div>
-            <div class="examples">hear, year, clear, dear</div>
-          </div>
-          <div class="item">
-            <div class="letters">ear</div>
-            <div class="phonetics">/ɜː/</div>
-            <div class="examples">learn, earth, early, search</div>
-          </div>
-          <div class="item">
-            <div class="letters">ear</div>
-            <div class="phonetics">/eə/</div>
-            <div class="examples">bear, wear, pear, tear</div>
-          </div>
-          <div class="item">
-            <div class="letters">ear</div>
-            <div class="phonetics">/ɑː/</div>
-            <div class="examples">heart</div>
-          </div>
-
-          <div class="item">
-            <div class="letters">eer</div>
-            <div class="phonetics">/ɪə/</div>
-            <div class="examples">beer, deer, cheer, career</div>
+          <div class="section-wrapper">
+            <div class="section-header">-el/-il/-ol/-ul 后缀 (弱读音节)</div>
+            <div class="item">
+              <div class="letters">el</div>
+              <div class="phonetics">/əl/</div>
+              <div class="examples">travel, towel, angel, tunnel</div>
+            </div>
+            <div class="item">
+              <div class="letters">il</div>
+              <div class="phonetics">/əl/</div>
+              <div class="examples">pencil, pupil, fossil, evil</div>
+            </div>
+            <div class="item">
+              <div class="letters">ol</div>
+              <div class="phonetics">/əl/</div>
+              <div class="examples">symbol, alcohol, petrol</div>
+            </div>
+            <div class="item">
+              <div class="letters">ul</div>
+              <div class="phonetics">/əl/</div>
+              <div class="examples">helpful, beautiful, careful, useful</div>
+            </div>
           </div>
 
-          <div class="section-header">oor 组合 (2种发音)</div>
-          <div class="item">
-            <div class="letters">oor</div>
-            <div class="phonetics">/ɔː/</div>
-            <div class="examples">door, floor</div>
-          </div>
-          <div class="item">
-            <div class="letters">oor</div>
-            <div class="phonetics">/ʊə/</div>
-            <div class="examples">poor, moor</div>
-          </div>
-
-          <div class="section-header">our 组合 (3种发音)</div>
-          <div class="item">
-            <div class="letters">our</div>
-            <div class="phonetics">/ɔː/</div>
-            <div class="examples">four, pour, court</div>
-          </div>
-          <div class="item">
-            <div class="letters">our</div>
-            <div class="phonetics">/aʊə/</div>
-            <div class="examples">hour, sour, flour</div>
-          </div>
-          <div class="item">
-            <div class="letters">our</div>
-            <div class="phonetics">/ə/</div>
-            <div class="examples">colour, favour, honour</div>
-          </div>
-
-          <div class="item">
-            <div class="letters">oar</div>
-            <div class="phonetics">/ɔː/</div>
-            <div class="examples">board, roar, soar, coarse</div>
+          <div class="section-wrapper">
+            <div class="section-header">-alk/-ould 特殊组合</div>
+            <div class="item">
+              <div class="letters">alk</div>
+              <div class="phonetics">/ɔːk/</div>
+              <div class="examples">walk, talk, chalk (l不发音)</div>
+            </div>
+            <div class="item">
+              <div class="letters">ould</div>
+              <div class="phonetics">/ʊd/</div>
+              <div class="examples">could, should, would (l不发音)</div>
+            </div>
+            <div class="item">
+              <div class="letters">ould</div>
+              <div class="phonetics">/əʊld/</div>
+              <div class="examples">mould, shoulder</div>
+            </div>
           </div>
         </div>
 
-        <!-- 辅音组合 1 -->
+        <!-- 辅音组合 -->
         <div class="card purple">
           <div class="card-title">
             辅音组合
             <span class="star">⭐</span>
           </div>
 
-          <div class="section-header">ch 组合 (3种发音，取决于词源)</div>
-          <div class="item">
-            <div class="letters">ch</div>
-            <div class="phonetics">/tʃ/</div>
-            <div class="examples">chair, church, much, teach</div>
-          </div>
-          <div class="item">
-            <div class="letters">ch</div>
-            <div class="phonetics">/k/</div>
-            <div class="examples">school, chemistry, Christmas</div>
-          </div>
-          <div class="item">
-            <div class="letters">ch</div>
-            <div class="phonetics">/ʃ/</div>
-            <div class="examples">chef, machine, parachute</div>
-          </div>
-
-          <div class="item">
-            <div class="letters">sh</div>
-            <div class="phonetics">/ʃ/</div>
-            <div class="examples">shop, fish, fresh, wish</div>
+          <div class="section-wrapper">
+            <div class="section-header">ch 组合 (3种发音，取决于词源)</div>
+            <div class="item">
+              <div class="letters">ch</div>
+              <div class="phonetics">/tʃ/</div>
+              <div class="examples">chair, church, much, teach</div>
+            </div>
+            <div class="item">
+              <div class="letters">ch</div>
+              <div class="phonetics">/k/</div>
+              <div class="examples">school, chemistry, Christmas</div>
+            </div>
+            <div class="item">
+              <div class="letters">ch</div>
+              <div class="phonetics">/ʃ/</div>
+              <div class="examples">chef, machine, parachute</div>
+            </div>
           </div>
 
-          <div class="section-header">th 组合 (清音/浊音)</div>
-          <div class="item">
-            <div class="letters">th</div>
-            <div class="phonetics">/θ/</div>
-            <div class="examples">think, three, mouth, breath</div>
-          </div>
-          <div class="item">
-            <div class="letters">th</div>
-            <div class="phonetics">/ð/</div>
-            <div class="examples">this, that, them, father</div>
-          </div>
-
-          <div class="item">
-            <div class="letters">ph</div>
-            <div class="phonetics">/f/</div>
-            <div class="examples">phone, photo, graph, physics</div>
+          <div class="section-wrapper">
+            <div class="section-header">th 组合 (清音/浊音)</div>
+            <div class="item">
+              <div class="letters">th</div>
+              <div class="phonetics">/θ/</div>
+              <div class="examples">think, three, mouth, breath</div>
+            </div>
+            <div class="item">
+              <div class="letters">th</div>
+              <div class="phonetics">/ð/</div>
+              <div class="examples">this, that, them, father</div>
+            </div>
           </div>
 
-          <div class="section-header">wh 组合 (后面元音不同发音不同)</div>
-          <div class="item">
-            <div class="letters">wh</div>
-            <div class="phonetics">/w/</div>
-            <div class="examples">what, when, white, why</div>
-          </div>
-          <div class="item">
-            <div class="letters">wh</div>
-            <div class="phonetics">/h/</div>
-            <div class="examples">who, whose, whole, whom</div>
-          </div>
-
-          <div class="section-header">gh 组合 (发/f/音或不发音)</div>
-          <div class="item">
-            <div class="letters">gh</div>
-            <div class="phonetics">/f/</div>
-            <div class="examples">laugh, cough, enough, rough</div>
-          </div>
-          <div class="item">
-            <div class="letters">gh</div>
-            <div class="phonetics">silent</div>
-            <div class="examples">night, high, though, through</div>
-          </div>
-        </div>
-
-        <!-- 辅音组合 2 -->
-        <div class="card purple">
-          <div class="card-title">辅音组合 (续)</div>
-
-          <div class="item">
-            <div class="letters">ng</div>
-            <div class="phonetics">/ŋ/</div>
-            <div class="examples">sing, long, ring, strong</div>
+          <div class="section-wrapper">
+            <div class="section-header">wh 组合 (后面元音不同发音不同)</div>
+            <div class="item">
+              <div class="letters">wh</div>
+              <div class="phonetics">/w/</div>
+              <div class="examples">what, when, white, why</div>
+            </div>
+            <div class="item">
+              <div class="letters">wh</div>
+              <div class="phonetics">/h/</div>
+              <div class="examples">who, whose, whole, whom</div>
+            </div>
           </div>
 
-          <div class="item">
-            <div class="letters">nk</div>
-            <div class="phonetics">/ŋk/</div>
-            <div class="examples">think, bank, drink, thank</div>
+          <div class="section-wrapper">
+            <div class="section-header">gh 组合 (发/f/音或不发音)</div>
+            <div class="item">
+              <div class="letters">gh</div>
+              <div class="phonetics">/f/</div>
+              <div class="examples">laugh, cough, enough, rough</div>
+            </div>
+            <div class="item">
+              <div class="letters">gh</div>
+              <div class="phonetics">silent</div>
+              <div class="examples">night, high, though, through</div>
+            </div>
           </div>
 
-          <div class="item">
-            <div class="letters">ck</div>
-            <div class="phonetics">/k/</div>
-            <div class="examples">back, black, lock, pick</div>
+          <div class="section-wrapper">
+            <div class="section-header">sch 组合 (主要在外来词)</div>
+            <div class="item">
+              <div class="letters">sch</div>
+              <div class="phonetics">/sk/</div>
+              <div class="examples">school, scheme, schedule, scholar</div>
+            </div>
+            <div class="item">
+              <div class="letters">sch</div>
+              <div class="phonetics">/ʃ/</div>
+              <div class="examples">schnitzel (德语借词)</div>
+            </div>
           </div>
 
-          <div class="item">
-            <div class="letters">dge</div>
-            <div class="phonetics">/dʒ/</div>
-            <div class="examples">bridge, edge, judge, badge</div>
+          <div class="section-wrapper">
+            <div class="section-header">x 组合 (位置不同发音不同)</div>
+            <div class="item">
+              <div class="letters">x</div>
+              <div class="phonetics">/ks/</div>
+              <div class="examples">box, six, tax, mix</div>
+            </div>
+            <div class="item">
+              <div class="letters">x</div>
+              <div class="phonetics">/gz/</div>
+              <div class="examples">exam, example, exist</div>
+            </div>
           </div>
 
-          <div class="item">
-            <div class="letters">tch</div>
-            <div class="phonetics">/tʃ/</div>
-            <div class="examples">watch, catch, match, kitchen</div>
+          <div class="section-wrapper">
+            <div class="section-header">双字母辅音 (辅音延长)</div>
+            <div class="item">
+              <div class="letters">ss</div>
+              <div class="phonetics">/s/</div>
+              <div class="examples">grass, pass, class, miss</div>
+            </div>
+            <div class="item">
+              <div class="letters">zz</div>
+              <div class="phonetics">/z/</div>
+              <div class="examples">buzz, fizz, jazz, pizza</div>
+            </div>
+            <div class="item">
+              <div class="letters">ff</div>
+              <div class="phonetics">/f/</div>
+              <div class="examples">off, stuff, cliff, coffee</div>
+            </div>
+            <div class="item">
+              <div class="letters">ll</div>
+              <div class="phonetics">/l/</div>
+              <div class="examples">ball, tell, small, bell</div>
+            </div>
           </div>
 
-          <div class="section-header">x 组合 (位置不同发音不同)</div>
-          <div class="item">
-            <div class="letters">x</div>
-            <div class="phonetics">/ks/</div>
-            <div class="examples">box, six, tax, mix</div>
-          </div>
-          <div class="item">
-            <div class="letters">x</div>
-            <div class="phonetics">/gz/</div>
-            <div class="examples">exam, example, exist</div>
-          </div>
-
-          <div class="item">
-            <div class="letters">qu</div>
-            <div class="phonetics">/kw/</div>
-            <div class="examples">quick, queen, question, quiet</div>
+          <div class="section-wrapper">
+            <div class="section-header">ng 组合的两种发音</div>
+            <div class="item">
+              <div class="letters">ng</div>
+              <div class="phonetics">/ŋ/</div>
+              <div class="examples">sing, long, ring, song (已有)</div>
+            </div>
+            <div class="item">
+              <div class="letters">ng</div>
+              <div class="phonetics">/ŋg/</div>
+              <div class="examples">finger, anger, longer, English</div>
+            </div>
           </div>
 
-          <div class="section-header">双字母辅音 (辅音延长)</div>
-          <div class="item">
-            <div class="letters">ss</div>
-            <div class="phonetics">/s/</div>
-            <div class="examples">grass, pass, class, miss</div>
-          </div>
-          <div class="item">
-            <div class="letters">zz</div>
-            <div class="phonetics">/z/</div>
-            <div class="examples">buzz, fizz, jazz, pizza</div>
-          </div>
-          <div class="item">
-            <div class="letters">ff</div>
-            <div class="phonetics">/f/</div>
-            <div class="examples">off, stuff, cliff, coffee</div>
-          </div>
-          <div class="item">
-            <div class="letters">ll</div>
-            <div class="phonetics">/l/</div>
-            <div class="examples">ball, tell, small, bell</div>
-          </div>
-        </div>
-
-        <!-- 辅音连缀 -->
-        <div class="card pink">
-          <div class="card-title">辅音连缀</div>
-
-          <div class="section-header">双字母连缀 (两个辅音连读)</div>
-          <div class="item">
-            <div class="letters">bl</div>
-            <div class="phonetics">/bl/</div>
-            <div class="examples">black, blue, block, blend</div>
-          </div>
-          <div class="item">
-            <div class="letters">br</div>
-            <div class="phonetics">/br/</div>
-            <div class="examples">bring, brown, bread, break</div>
-          </div>
-          <div class="item">
-            <div class="letters">cl</div>
-            <div class="phonetics">/kl/</div>
-            <div class="examples">clean, clear, close, class</div>
-          </div>
-          <div class="item">
-            <div class="letters">cr</div>
-            <div class="phonetics">/kr/</div>
-            <div class="examples">cry, cream, cross, crown</div>
-          </div>
-          <div class="item">
-            <div class="letters">dr</div>
-            <div class="phonetics">/dr/</div>
-            <div class="examples">drop, draw, drink, dream</div>
-          </div>
-          <div class="item">
-            <div class="letters">fl</div>
-            <div class="phonetics">/fl/</div>
-            <div class="examples">fly, flower, flag, floor</div>
-          </div>
-          <div class="item">
-            <div class="letters">fr</div>
-            <div class="phonetics">/fr/</div>
-            <div class="examples">free, from, friend, fresh</div>
-          </div>
-          <div class="item">
-            <div class="letters">gl</div>
-            <div class="phonetics">/gl/</div>
-            <div class="examples">glass, glove, glad, glow</div>
-          </div>
-          <div class="item">
-            <div class="letters">gr</div>
-            <div class="phonetics">/gr/</div>
-            <div class="examples">great, green, grow, group</div>
-          </div>
-          <div class="item">
-            <div class="letters">pl</div>
-            <div class="phonetics">/pl/</div>
-            <div class="examples">play, please, place, plan</div>
-          </div>
-          <div class="item">
-            <div class="letters">pr</div>
-            <div class="phonetics">/pr/</div>
-            <div class="examples">pray, present, price, proud</div>
-          </div>
-          <div class="item">
-            <div class="letters">sc</div>
-            <div class="phonetics">/sk/</div>
-            <div class="examples">school, score, scarf, scale</div>
-          </div>
-          <div class="item">
-            <div class="letters">sk</div>
-            <div class="phonetics">/sk/</div>
-            <div class="examples">sky, skin, skate, skip</div>
-          </div>
-          <div class="item">
-            <div class="letters">sl</div>
-            <div class="phonetics">/sl/</div>
-            <div class="examples">sleep, slow, slide, slip</div>
-          </div>
-          <div class="item">
-            <div class="letters">sm</div>
-            <div class="phonetics">/sm/</div>
-            <div class="examples">small, smile, smell, smart</div>
-          </div>
-          <div class="item">
-            <div class="letters">sn</div>
-            <div class="phonetics">/sn/</div>
-            <div class="examples">snow, snake, snap, snack</div>
-          </div>
-          <div class="item">
-            <div class="letters">sp</div>
-            <div class="phonetics">/sp/</div>
-            <div class="examples">speak, sport, space, speed</div>
-          </div>
-          <div class="item">
-            <div class="letters">st</div>
-            <div class="phonetics">/st/</div>
-            <div class="examples">stop, star, start, stand</div>
-          </div>
-          <div class="item">
-            <div class="letters">sw</div>
-            <div class="phonetics">/sw/</div>
-            <div class="examples">swim, sweet, swing, switch</div>
-          </div>
-          <div class="item">
-            <div class="letters">tr</div>
-            <div class="phonetics">/tr/</div>
-            <div class="examples">tree, train, try, track</div>
-          </div>
-          <div class="item">
-            <div class="letters">tw</div>
-            <div class="phonetics">/tw/</div>
-            <div class="examples">twin, twelve, twist, twice</div>
+          <div class="section-wrapper">
+            <div class="section-header">dg 组合 (不含e)</div>
+            <div class="item">
+              <div class="letters">dg</div>
+              <div class="phonetics">/dʒ/</div>
+              <div class="examples">lodge, judge, budget, fudge</div>
+            </div>
           </div>
 
-          <div class="section-header">三字母连缀 (三个辅音连读)</div>
-          <div class="item">
-            <div class="letters">str</div>
-            <div class="phonetics">/str/</div>
-            <div class="examples">street, strong, stream, straight</div>
+          <div class="section-wrapper">
+            <div class="item">
+              <div class="letters">sh</div>
+              <div class="phonetics">/ʃ/</div>
+              <div class="examples">shop, fish, fresh, wish</div>
+            </div>
+            <div class="item">
+              <div class="letters">ph</div>
+              <div class="phonetics">/f/</div>
+              <div class="examples">phone, photo, graph, physics</div>
+            </div>
+            <div class="item">
+              <div class="letters">ng</div>
+              <div class="phonetics">/ŋ/</div>
+              <div class="examples">sing, long, ring, strong</div>
+            </div>
           </div>
-          <div class="item">
-            <div class="letters">spr</div>
-            <div class="phonetics">/spr/</div>
-            <div class="examples">spring, spread, spray, sprout</div>
+
+          <div class="section-wrapper">
+            <div class="item">
+              <div class="letters">nk</div>
+              <div class="phonetics">/ŋk/</div>
+              <div class="examples">think, bank, drink, thank</div>
+            </div>
+            <div class="item">
+              <div class="letters">ck</div>
+              <div class="phonetics">/k/</div>
+              <div class="examples">back, black, lock, pick</div>
+            </div>
+            <div class="item">
+              <div class="letters">dge</div>
+              <div class="phonetics">/dʒ/</div>
+              <div class="examples">bridge, edge, judge, badge</div>
+            </div>
           </div>
-          <div class="item">
-            <div class="letters">spl</div>
-            <div class="phonetics">/spl/</div>
-            <div class="examples">splash, split, splendid</div>
-          </div>
-          <div class="item">
-            <div class="letters">scr</div>
-            <div class="phonetics">/skr/</div>
-            <div class="examples">screen, scream, scratch, script</div>
-          </div>
-          <div class="item">
-            <div class="letters">thr</div>
-            <div class="phonetics">/θr/</div>
-            <div class="examples">three, through, throw, thread</div>
-          </div>
-          <div class="item">
-            <div class="letters">shr</div>
-            <div class="phonetics">/ʃr/</div>
-            <div class="examples">shrimp, shrink, shrug</div>
-          </div>
-          <div class="item">
-            <div class="letters">squ</div>
-            <div class="phonetics">/skw/</div>
-            <div class="examples">square, squeeze, squirrel</div>
+
+          <div class="section-wrapper">
+            <div class="item">
+              <div class="letters">tch</div>
+              <div class="phonetics">/tʃ/</div>
+              <div class="examples">watch, catch, match, kitchen</div>
+            </div>
+            <div class="item">
+              <div class="letters">qu</div>
+              <div class="phonetics">/kw/</div>
+              <div class="examples">quick, queen, question, quiet</div>
+            </div>
           </div>
         </div>
 
@@ -908,148 +916,94 @@
         <div class="card orange">
           <div class="card-title">静音字母组合 (特定字母不发音)</div>
 
-          <div class="item">
-            <div class="letters">kn</div>
-            <div class="phonetics">/n/</div>
-            <div class="examples">know, knee, knife, knight</div>
-          </div>
-          <div class="item">
-            <div class="letters">wr</div>
-            <div class="phonetics">/r/</div>
-            <div class="examples">write, wrong, wrap, wrist</div>
-          </div>
-          <div class="item">
-            <div class="letters">mb</div>
-            <div class="phonetics">/m/</div>
-            <div class="examples">climb, thumb, lamb, comb</div>
-          </div>
-          <div class="item">
-            <div class="letters">gn</div>
-            <div class="phonetics">/n/</div>
-            <div class="examples">sign, design, foreign, campaign</div>
-          </div>
-          <div class="item">
-            <div class="letters">mn</div>
-            <div class="phonetics">/m/</div>
-            <div class="examples">autumn, column, hymn, condemn</div>
-          </div>
-          <div class="item">
-            <div class="letters">ps</div>
-            <div class="phonetics">/s/</div>
-            <div class="examples">psychology, psalm, psycho</div>
-          </div>
-          <div class="item">
-            <div class="letters">pn</div>
-            <div class="phonetics">/n/</div>
-            <div class="examples">pneumonia, pneumatic</div>
-          </div>
-          <div class="item">
-            <div class="letters">rh</div>
-            <div class="phonetics">/r/</div>
-            <div class="examples">rhythm, rhyme, rhinoceros</div>
-          </div>
-          <div class="item">
-            <div class="letters">lk</div>
-            <div class="phonetics">/k/</div>
-            <div class="examples">walk, talk, chalk, folk</div>
-          </div>
-          <div class="item">
-            <div class="letters">lm</div>
-            <div class="phonetics">/m/</div>
-            <div class="examples">calm, palm, salmon, almond</div>
-          </div>
-          <div class="item">
-            <div class="letters">bt</div>
-            <div class="phonetics">/t/</div>
-            <div class="examples">debt, doubt, subtle</div>
-          </div>
-          <div class="item">
-            <div class="letters">st</div>
-            <div class="phonetics">/s/</div>
-            <div class="examples">listen, castle, whistle, fasten</div>
-          </div>
-        </div>
-
-        <!-- 后缀组合 -->
-        <div class="card blue">
-          <div class="card-title">后缀组合</div>
-
-          <div class="section-header">-tion/-sion 后缀 (名词后缀)</div>
-          <div class="item">
-            <div class="letters">-tion</div>
-            <div class="phonetics">/ʃən/</div>
-            <div class="examples">nation, station, education, action</div>
-          </div>
-          <div class="item">
-            <div class="letters">-sion</div>
-            <div class="phonetics">/ʃən/</div>
-            <div class="examples">mission, passion, session</div>
-          </div>
-          <div class="item">
-            <div class="letters">-sion</div>
-            <div class="phonetics">/ʒən/</div>
-            <div class="examples">vision, decision, television</div>
+          <div class="section-wrapper">
+            <div class="item">
+              <div class="letters">kn</div>
+              <div class="phonetics">/n/</div>
+              <div class="examples">know, knee, knife, knight</div>
+            </div>
+            <div class="item">
+              <div class="letters">wr</div>
+              <div class="phonetics">/r/</div>
+              <div class="examples">write, wrong, wrap, wrist</div>
+            </div>
+            <div class="item">
+              <div class="letters">mb</div>
+              <div class="phonetics">/m/</div>
+              <div class="examples">climb, thumb, lamb, comb</div>
+            </div>
           </div>
 
-          <div class="section-header">-ture/-sure 后缀 (名词后缀)</div>
-          <div class="item">
-            <div class="letters">-ture</div>
-            <div class="phonetics">/tʃə/</div>
-            <div class="examples">picture, nature, future, culture</div>
-          </div>
-          <div class="item">
-            <div class="letters">-sure</div>
-            <div class="phonetics">/ʒə/</div>
-            <div class="examples">pleasure, measure, treasure, leisure</div>
-          </div>
-
-          <div class="section-header">-cious/-tious 后缀 (形容词后缀)</div>
-          <div class="item">
-            <div class="letters">-cious</div>
-            <div class="phonetics">/ʃəs/</div>
-            <div class="examples">delicious, precious, gracious</div>
-          </div>
-          <div class="item">
-            <div class="letters">-tious</div>
-            <div class="phonetics">/ʃəs/</div>
-            <div class="examples">ambitious, cautious, infectious</div>
+          <div class="section-wrapper">
+            <div class="item">
+              <div class="letters">gn</div>
+              <div class="phonetics">/n/</div>
+              <div class="examples">sign, design, foreign, campaign</div>
+            </div>
+            <div class="item">
+              <div class="letters">mn</div>
+              <div class="phonetics">/m/</div>
+              <div class="examples">autumn, column, hymn, condemn</div>
+            </div>
+            <div class="item">
+              <div class="letters">ps</div>
+              <div class="phonetics">/s/</div>
+              <div class="examples">psychology, psalm, psycho</div>
+            </div>
           </div>
 
-          <div class="section-header">其他常见后缀</div>
-          <div class="item">
-            <div class="letters">-ous</div>
-            <div class="phonetics">/əs/</div>
-            <div class="examples">famous, dangerous, nervous, serious</div>
+          <div class="section-wrapper">
+            <div class="item">
+              <div class="letters">pn</div>
+              <div class="phonetics">/n/</div>
+              <div class="examples">pneumonia, pneumatic</div>
+            </div>
+            <div class="item">
+              <div class="letters">rh</div>
+              <div class="phonetics">/r/</div>
+              <div class="examples">rhythm, rhyme, rhinoceros</div>
+            </div>
+            <div class="item">
+              <div class="letters">lk</div>
+              <div class="phonetics">/k/</div>
+              <div class="examples">walk, talk, chalk, folk</div>
+            </div>
           </div>
-          <div class="item">
-            <div class="letters">-age</div>
-            <div class="phonetics">/ɪdʒ/</div>
-            <div class="examples">village, package, manage, message</div>
+
+          <div class="section-wrapper">
+            <div class="item">
+              <div class="letters">lm</div>
+              <div class="phonetics">/m/</div>
+              <div class="examples">calm, palm, salmon, almond</div>
+            </div>
+            <div class="item">
+              <div class="letters">bt</div>
+              <div class="phonetics">/t/</div>
+              <div class="examples">debt, doubt, subtle</div>
+            </div>
+            <div class="item">
+              <div class="letters">st</div>
+              <div class="phonetics">/s/</div>
+              <div class="examples">listen, castle, whistle, fasten</div>
+            </div>
           </div>
-          <div class="item">
-            <div class="letters">-que</div>
-            <div class="phonetics">/k/</div>
-            <div class="examples">unique, antique, technique, boutique</div>
-          </div>
-          <div class="item">
-            <div class="letters">-al</div>
-            <div class="phonetics">/əl/</div>
-            <div class="examples">national, natural, animal, central</div>
-          </div>
-          <div class="item">
-            <div class="letters">-le</div>
-            <div class="phonetics">/əl/</div>
-            <div class="examples">table, apple, little, bottle</div>
-          </div>
-          <div class="item">
-            <div class="letters">-ce</div>
-            <div class="phonetics">/s/</div>
-            <div class="examples">ice, rice, nice, dance</div>
-          </div>
-          <div class="item">
-            <div class="letters">-ge</div>
-            <div class="phonetics">/dʒ/</div>
-            <div class="examples">age, page, stage, large</div>
+
+          <div class="section-wrapper">
+            <div class="item">
+              <div class="letters">gu</div>
+              <div class="phonetics">/g/</div>
+              <div class="examples">guess, guest, guide, guitar</div>
+            </div>
+            <div class="item">
+              <div class="letters">gue</div>
+              <div class="phonetics">/g/</div>
+              <div class="examples">league, dialogue, catalogue</div>
+            </div>
+            <div class="item">
+              <div class="letters">dge</div>
+              <div class="phonetics">/dʒ/</div>
+              <div class="examples">已在辅音组合中</div>
+            </div>
           </div>
         </div>
 
@@ -1060,94 +1014,1097 @@
             <span class="star">⭐</span>
           </div>
 
-          <div class="section-header">Magic E (不发音的e使前面元音发长音)</div>
-          <div class="item">
-            <div class="letters">a_e</div>
-            <div class="phonetics">/eɪ/</div>
-            <div class="examples">cake, make, take, name</div>
-          </div>
-          <div class="item">
-            <div class="letters">e_e</div>
-            <div class="phonetics">/iː/</div>
-            <div class="examples">these, complete, delete</div>
-          </div>
-          <div class="item">
-            <div class="letters">i_e</div>
-            <div class="phonetics">/aɪ/</div>
-            <div class="examples">bike, like, time, five</div>
-          </div>
-          <div class="item">
-            <div class="letters">o_e</div>
-            <div class="phonetics">/əʊ/</div>
-            <div class="examples">home, hope, nose, note</div>
-          </div>
-          <div class="item">
-            <div class="letters">u_e</div>
-            <div class="phonetics">/juː/</div>
-            <div class="examples">cute, use, huge, tube</div>
-          </div>
-
-          <div class="section-header">y 的多种发音 (位置不同发音不同)</div>
-          <div class="item">
-            <div class="letters">y</div>
-            <div class="phonetics">/aɪ/</div>
-            <div class="examples">my, fly, cry, sky</div>
-          </div>
-          <div class="item">
-            <div class="letters">y</div>
-            <div class="phonetics">/ɪ/</div>
-            <div class="examples">happy, sunny, funny, city</div>
-          </div>
-          <div class="item">
-            <div class="letters">y</div>
-            <div class="phonetics">/i/</div>
-            <div class="examples">baby, lady, party, study</div>
+          <div class="section-wrapper">
+            <div class="section-header">Magic E (不发音的e使前面元音发长音)</div>
+            <div class="item">
+              <div class="letters">a_e</div>
+              <div class="phonetics">/eɪ/</div>
+              <div class="examples">cake, make, take, name</div>
+            </div>
+            <div class="item">
+              <div class="letters">e_e</div>
+              <div class="phonetics">/iː/</div>
+              <div class="examples">these, complete, delete</div>
+            </div>
+            <div class="item">
+              <div class="letters">i_e</div>
+              <div class="phonetics">/aɪ/</div>
+              <div class="examples">bike, like, time, five</div>
+            </div>
+            <div class="item">
+              <div class="letters">o_e</div>
+              <div class="phonetics">/əʊ/</div>
+              <div class="examples">home, hope, nose, note</div>
+            </div>
+            <div class="item">
+              <div class="letters">u_e</div>
+              <div class="phonetics">/juː/</div>
+              <div class="examples">cute, use, huge, tube</div>
+            </div>
           </div>
 
-          <div class="section-header">-ed 后缀的发音 (取决于前面的音)</div>
-          <div class="item">
-            <div class="letters">-ed</div>
-            <div class="phonetics">/d/</div>
-            <div class="examples">played, rained, loved, used</div>
-          </div>
-          <div class="item">
-            <div class="letters">-ed</div>
-            <div class="phonetics">/t/</div>
-            <div class="examples">walked, looked, helped, washed</div>
-          </div>
-          <div class="item">
-            <div class="letters">-ed</div>
-            <div class="phonetics">/ɪd/</div>
-            <div class="examples">wanted, needed, started, ended</div>
-          </div>
-
-          <div class="section-header">-s/-es 后缀的发音 (取决于前面的音)</div>
-          <div class="item">
-            <div class="letters">-s</div>
-            <div class="phonetics">/s/</div>
-            <div class="examples">cats, books, maps, helps</div>
-          </div>
-          <div class="item">
-            <div class="letters">-s</div>
-            <div class="phonetics">/z/</div>
-            <div class="examples">dogs, plays, runs, comes</div>
-          </div>
-          <div class="item">
-            <div class="letters">-es</div>
-            <div class="phonetics">/ɪz/</div>
-            <div class="examples">buses, wishes, watches, boxes</div>
+          <div class="section-wrapper">
+            <div class="section-header">y 的多种发音 (位置不同发音不同)</div>
+            <div class="item">
+              <div class="letters">y</div>
+              <div class="phonetics">/aɪ/</div>
+              <div class="examples">my, fly, cry, sky</div>
+            </div>
+            <div class="item">
+              <div class="letters">y</div>
+              <div class="phonetics">/ɪ/</div>
+              <div class="examples">happy, sunny, funny, city</div>
+            </div>
+            <div class="item">
+              <div class="letters">y</div>
+              <div class="phonetics">/i/</div>
+              <div class="examples">baby, lady, party, study</div>
+            </div>
           </div>
 
-          <div class="section-header">其他特殊组合</div>
-          <div class="item">
-            <div class="letters">ache</div>
-            <div class="phonetics">/eɪk/</div>
-            <div class="examples">headache, stomachache, toothache</div>
+          <div class="section-wrapper">
+            <div class="section-header">other/another 的 o 发音</div>
+            <div class="item">
+              <div class="letters">o</div>
+              <div class="phonetics">/ʌ/</div>
+              <div class="examples">mother, brother, other, nothing, love</div>
+            </div>
           </div>
-          <div class="item">
-            <div class="letters">-tion</div>
-            <div class="phonetics">/tʃən/</div>
-            <div class="examples">question, suggestion (after s)</div>
+
+          <div class="section-wrapper">
+            <div class="section-header">old/oll/olt 组合</div>
+            <div class="item">
+              <div class="letters">old</div>
+              <div class="phonetics">/əʊld/</div>
+              <div class="examples">old, cold, gold, told</div>
+            </div>
+            <div class="item">
+              <div class="letters">oll</div>
+              <div class="phonetics">/əʊl/</div>
+              <div class="examples">roll, poll, toll, scroll</div>
+            </div>
+            <div class="item">
+              <div class="letters">olt</div>
+              <div class="phonetics">/əʊlt/</div>
+              <div class="examples">bolt, colt, jolt, volt</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">ind/ild/ost 组合</div>
+            <div class="item">
+              <div class="letters">ind</div>
+              <div class="phonetics">/aɪnd/</div>
+              <div class="examples">kind, find, mind, blind</div>
+            </div>
+            <div class="item">
+              <div class="letters">ild</div>
+              <div class="phonetics">/aɪld/</div>
+              <div class="examples">child, wild, mild</div>
+            </div>
+            <div class="item">
+              <div class="letters">ost</div>
+              <div class="phonetics">/əʊst/</div>
+              <div class="examples">most, post, host, ghost</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">-ed 后缀的发音 (取决于前面的音)</div>
+            <div class="item">
+              <div class="letters">-ed</div>
+              <div class="phonetics">/d/</div>
+              <div class="examples">played, rained, loved, used</div>
+            </div>
+            <div class="item">
+              <div class="letters">-ed</div>
+              <div class="phonetics">/t/</div>
+              <div class="examples">walked, looked, helped, washed</div>
+            </div>
+            <div class="item">
+              <div class="letters">-ed</div>
+              <div class="phonetics">/ɪd/</div>
+              <div class="examples">wanted, needed, started, ended</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">-s/-es 后缀的发音 (取决于前面的音)</div>
+            <div class="item">
+              <div class="letters">-s</div>
+              <div class="phonetics">/s/</div>
+              <div class="examples">cats, books, maps, helps</div>
+            </div>
+            <div class="item">
+              <div class="letters">-s</div>
+              <div class="phonetics">/z/</div>
+              <div class="examples">dogs, plays, runs, comes</div>
+            </div>
+            <div class="item">
+              <div class="letters">-es</div>
+              <div class="phonetics">/ɪz/</div>
+              <div class="examples">buses, wishes, watches, boxes</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">ang/ong/ung 组合 (元音+ng固定发音)</div>
+            <div class="item">
+              <div class="letters">ang</div>
+              <div class="phonetics">/æŋ/</div>
+              <div class="examples">bang, hang, sang, rang</div>
+            </div>
+            <div class="item">
+              <div class="letters">ong</div>
+              <div class="phonetics">/ɒŋ/ 或 /ɔːŋ/</div>
+              <div class="examples">song, long, strong, wrong</div>
+            </div>
+            <div class="item">
+              <div class="letters">ung</div>
+              <div class="phonetics">/ʌŋ/</div>
+              <div class="examples">lung, hung, sung, young</div>
+            </div>
+            <div class="item">
+              <div class="letters">ing</div>
+              <div class="phonetics">/ɪŋ/</div>
+              <div class="examples">sing, king, ring, bring</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">ank/ink/onk/unk 组合 (元音+nk固定发音)</div>
+            <div class="item">
+              <div class="letters">ank</div>
+              <div class="phonetics">/æŋk/</div>
+              <div class="examples">bank, tank, rank, thank</div>
+            </div>
+            <div class="item">
+              <div class="letters">ink</div>
+              <div class="phonetics">/ɪŋk/</div>
+              <div class="examples">pink, think, drink, link</div>
+            </div>
+            <div class="item">
+              <div class="letters">onk</div>
+              <div class="phonetics">/ɒŋk/</div>
+              <div class="examples">honk, conk, wonky</div>
+            </div>
+            <div class="item">
+              <div class="letters">unk</div>
+              <div class="phonetics">/ʌŋk/</div>
+              <div class="examples">junk, trunk, drunk, skunk</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">all/oll/ull 组合 (双l影响发音)</div>
+            <div class="item">
+              <div class="letters">all</div>
+              <div class="phonetics">/ɔːl/</div>
+              <div class="examples">all, ball, call, small</div>
+            </div>
+            <div class="item">
+              <div class="letters">oll</div>
+              <div class="phonetics">/ɒl/ 或 /əʊl/</div>
+              <div class="examples">doll, dollar / roll, poll (已在前面)</div>
+            </div>
+            <div class="item">
+              <div class="letters">ull</div>
+              <div class="phonetics">/ʊl/</div>
+              <div class="examples">bull, full, pull</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">war/wor/quar 组合 (w影响后面元音)</div>
+            <div class="item">
+              <div class="letters">war</div>
+              <div class="phonetics">/wɔː/</div>
+              <div class="examples">war, warm, ward, warn</div>
+            </div>
+            <div class="item">
+              <div class="letters">wor</div>
+              <div class="phonetics">/wɜː/</div>
+              <div class="examples">work, word, world, worth</div>
+            </div>
+            <div class="item">
+              <div class="letters">quar</div>
+              <div class="phonetics">/kwɔː/</div>
+              <div class="examples">quarter, quart, quarrel</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">aught/ought 组合</div>
+            <div class="item">
+              <div class="letters">aught</div>
+              <div class="phonetics">/ɔːt/</div>
+              <div class="examples">taught, caught, daughter, naughty</div>
+            </div>
+            <div class="item">
+              <div class="letters">ought</div>
+              <div class="phonetics">/ɔːt/</div>
+              <div class="examples">ought, bought, thought, brought</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">其他特殊组合</div>
+            <div class="item">
+              <div class="letters">ache</div>
+              <div class="phonetics">/eɪk/</div>
+              <div class="examples">headache, stomachache, toothache</div>
+            </div>
+            <div class="item">
+              <div class="letters">-tion</div>
+              <div class="phonetics">/tʃən/</div>
+              <div class="examples">question, suggestion (after s)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 后缀组合 -->
+        <div class="card blue">
+          <div class="card-title">后缀组合</div>
+
+          <div class="section-wrapper">
+            <div class="section-header">-tion/-sion 后缀 (名词后缀)</div>
+            <div class="item">
+              <div class="letters">-tion</div>
+              <div class="phonetics">/ʃən/</div>
+              <div class="examples">nation, station, education, action</div>
+            </div>
+            <div class="item">
+              <div class="letters">-sion</div>
+              <div class="phonetics">/ʃən/</div>
+              <div class="examples">mission, passion, session</div>
+            </div>
+            <div class="item">
+              <div class="letters">-sion</div>
+              <div class="phonetics">/ʒən/</div>
+              <div class="examples">vision, decision, television</div>
+            </div>
+            <div class="item">
+              <div class="letters">-cian</div>
+              <div class="phonetics">/ʃən/</div>
+              <div class="examples">musician, magician, physician</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">-ture/-sure 后缀 (名词后缀)</div>
+            <div class="item">
+              <div class="letters">-ture</div>
+              <div class="phonetics">/tʃə/</div>
+              <div class="examples">picture, nature, future, culture</div>
+            </div>
+            <div class="item">
+              <div class="letters">-sure</div>
+              <div class="phonetics">/ʒə/</div>
+              <div class="examples">pleasure, measure, treasure, leisure</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">-cious/-tious 后缀 (形容词后缀)</div>
+            <div class="item">
+              <div class="letters">-cious</div>
+              <div class="phonetics">/ʃəs/</div>
+              <div class="examples">delicious, precious, gracious</div>
+            </div>
+            <div class="item">
+              <div class="letters">-tious</div>
+              <div class="phonetics">/ʃəs/</div>
+              <div class="examples">ambitious, cautious, infectious</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">-ous 变体</div>
+            <div class="item">
+              <div class="letters">-ious</div>
+              <div class="phonetics">/ɪəs/ 或 /jəs/</div>
+              <div class="examples">serious, curious, various, glorious</div>
+            </div>
+            <div class="item">
+              <div class="letters">-eous</div>
+              <div class="phonetics">/iəs/ 或 /jəs/</div>
+              <div class="examples">gorgeous, courteous, simultaneous</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">-able/-ible 后缀</div>
+            <div class="item">
+              <div class="letters">-able</div>
+              <div class="phonetics">/əbəl/</div>
+              <div class="examples">comfortable, available, capable</div>
+            </div>
+            <div class="item">
+              <div class="letters">-ible</div>
+              <div class="phonetics">/ɪbəl/</div>
+              <div class="examples">possible, terrible, visible, edible</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">-ful/-less 后缀</div>
+            <div class="item">
+              <div class="letters">-ful</div>
+              <div class="phonetics">/fʊl/ 或 /fəl/</div>
+              <div class="examples">beautiful, careful, useful, helpful</div>
+            </div>
+            <div class="item">
+              <div class="letters">-less</div>
+              <div class="phonetics">/ləs/ 或 /lɪs/</div>
+              <div class="examples">helpless, careless, endless, useless</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">-ness/-ment 后缀</div>
+            <div class="item">
+              <div class="letters">-ness</div>
+              <div class="phonetics">/nəs/ 或 /nɪs/</div>
+              <div class="examples">happiness, kindness, darkness, sadness</div>
+            </div>
+            <div class="item">
+              <div class="letters">-ment</div>
+              <div class="phonetics">/mənt/</div>
+              <div class="examples">government, movement, treatment, moment</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">其他常见后缀</div>
+            <div class="item">
+              <div class="letters">-ous</div>
+              <div class="phonetics">/əs/</div>
+              <div class="examples">famous, dangerous, nervous, serious</div>
+            </div>
+            <div class="item">
+              <div class="letters">-age</div>
+              <div class="phonetics">/ɪdʒ/</div>
+              <div class="examples">village, package, manage, message</div>
+            </div>
+            <div class="item">
+              <div class="letters">-que</div>
+              <div class="phonetics">/k/</div>
+              <div class="examples">unique, antique, technique, boutique</div>
+            </div>
+            <div class="item">
+              <div class="letters">-al</div>
+              <div class="phonetics">/əl/</div>
+              <div class="examples">national, natural, animal, central</div>
+            </div>
+            <div class="item">
+              <div class="letters">-le</div>
+              <div class="phonetics">/əl/</div>
+              <div class="examples">table, apple, little, bottle</div>
+            </div>
+            <div class="item">
+              <div class="letters">-ce</div>
+              <div class="phonetics">/s/</div>
+              <div class="examples">ice, rice, nice, dance</div>
+            </div>
+            <div class="item">
+              <div class="letters">-ge</div>
+              <div class="phonetics">/dʒ/</div>
+              <div class="examples">age, page, stage, large</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ough 特殊组合 -->
+        <div class="card orange">
+          <div class="card-title">
+            ough 超级多音组合
+            <span class="star">⭐⭐⭐</span>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">ough 组合 (6种发音，英语中最复杂的组合)</div>
+            <div class="item">
+              <div class="letters">ough</div>
+              <div class="phonetics">/ʌf/</div>
+              <div class="examples">enough, rough, tough</div>
+            </div>
+            <div class="item">
+              <div class="letters">ough</div>
+              <div class="phonetics">/əʊ/</div>
+              <div class="examples">though, dough, although</div>
+            </div>
+            <div class="item">
+              <div class="letters">ough</div>
+              <div class="phonetics">/ɔː/</div>
+              <div class="examples">thought, bought, brought</div>
+            </div>
+            <div class="item">
+              <div class="letters">ough</div>
+              <div class="phonetics">/uː/</div>
+              <div class="examples">through</div>
+            </div>
+            <div class="item">
+              <div class="letters">ough</div>
+              <div class="phonetics">/ɒf/</div>
+              <div class="examples">cough</div>
+            </div>
+            <div class="item">
+              <div class="letters">ough</div>
+              <div class="phonetics">/aʊ/</div>
+              <div class="examples">plough, bough</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">ue 组合 (2种发音)</div>
+            <div class="item">
+              <div class="letters">ue</div>
+              <div class="phonetics">/juː/</div>
+              <div class="examples">value, continue, argue</div>
+            </div>
+            <div class="item">
+              <div class="letters">ue</div>
+              <div class="phonetics">/uː/</div>
+              <div class="examples">blue, true, glue</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">ui 组合 (2种发音)</div>
+            <div class="item">
+              <div class="letters">ui</div>
+              <div class="phonetics">/uː/</div>
+              <div class="examples">fruit, juice, suit</div>
+            </div>
+            <div class="item">
+              <div class="letters">ui</div>
+              <div class="phonetics">/ɪ/</div>
+              <div class="examples">build, guitar, biscuit</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">ew 组合 (2种发音)</div>
+            <div class="item">
+              <div class="letters">ew</div>
+              <div class="phonetics">/juː/</div>
+              <div class="examples">new, few, view</div>
+            </div>
+            <div class="item">
+              <div class="letters">ew</div>
+              <div class="phonetics">/uː/</div>
+              <div class="examples">grew, flew, drew</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 词族模式 -->
+        <div class="card orange">
+          <div class="card-title">常见词族模式</div>
+
+          <div class="section-wrapper">
+            <div class="section-header">-ack/-eck/-ick/-ock/-uck 词族</div>
+            <div class="item">
+              <div class="letters">-ack</div>
+              <div class="phonetics">/æk/</div>
+              <div class="examples">back, pack, black, track</div>
+            </div>
+            <div class="item">
+              <div class="letters">-eck</div>
+              <div class="phonetics">/ek/</div>
+              <div class="examples">neck, check, deck, wreck</div>
+            </div>
+            <div class="item">
+              <div class="letters">-ick</div>
+              <div class="phonetics">/ɪk/</div>
+              <div class="examples">sick, quick, thick, trick</div>
+            </div>
+            <div class="item">
+              <div class="letters">-ock</div>
+              <div class="phonetics">/ɒk/</div>
+              <div class="examples">rock, clock, block, shock</div>
+            </div>
+            <div class="item">
+              <div class="letters">-uck</div>
+              <div class="phonetics">/ʌk/</div>
+              <div class="examples">duck, truck, stuck, luck</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">-at/-et/-it/-ot/-ut 词族</div>
+            <div class="item">
+              <div class="letters">-at</div>
+              <div class="phonetics">/æt/</div>
+              <div class="examples">cat, hat, mat, flat</div>
+            </div>
+            <div class="item">
+              <div class="letters">-et</div>
+              <div class="phonetics">/et/</div>
+              <div class="examples">pet, get, wet, met</div>
+            </div>
+            <div class="item">
+              <div class="letters">-it</div>
+              <div class="phonetics">/ɪt/</div>
+              <div class="examples">sit, hit, bit, fit</div>
+            </div>
+            <div class="item">
+              <div class="letters">-ot</div>
+              <div class="phonetics">/ɒt/</div>
+              <div class="examples">hot, pot, dot, got</div>
+            </div>
+            <div class="item">
+              <div class="letters">-ut</div>
+              <div class="phonetics">/ʌt/</div>
+              <div class="examples">but, cut, nut, shut</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">-an/-en/-in/-on/-un 词族</div>
+            <div class="item">
+              <div class="letters">-an</div>
+              <div class="phonetics">/æn/</div>
+              <div class="examples">can, man, pan, plan</div>
+            </div>
+            <div class="item">
+              <div class="letters">-en</div>
+              <div class="phonetics">/en/</div>
+              <div class="examples">pen, ten, then, when</div>
+            </div>
+            <div class="item">
+              <div class="letters">-in</div>
+              <div class="phonetics">/ɪn/</div>
+              <div class="examples">pin, win, thin, begin</div>
+            </div>
+            <div class="item">
+              <div class="letters">-on</div>
+              <div class="phonetics">/ɒn/</div>
+              <div class="examples">on, gone (不规则)</div>
+            </div>
+            <div class="item">
+              <div class="letters">-un</div>
+              <div class="phonetics">/ʌn/</div>
+              <div class="examples">run, sun, fun, gun</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 辅音连缀 -->
+        <div class="card pink">
+          <div class="card-title">辅音连缀</div>
+
+          <div class="section-wrapper">
+            <div class="section-header">双字母连缀 (两个辅音连读)</div>
+            <div class="item">
+              <div class="letters">bl</div>
+              <div class="phonetics">/bl/</div>
+              <div class="examples">black, blue, block, blend</div>
+            </div>
+            <div class="item">
+              <div class="letters">br</div>
+              <div class="phonetics">/br/</div>
+              <div class="examples">bring, brown, bread, break</div>
+            </div>
+            <div class="item">
+              <div class="letters">cl</div>
+              <div class="phonetics">/kl/</div>
+              <div class="examples">clean, clear, close, class</div>
+            </div>
+            <div class="item">
+              <div class="letters">cr</div>
+              <div class="phonetics">/kr/</div>
+              <div class="examples">cry, cream, cross, crown</div>
+            </div>
+            <div class="item">
+              <div class="letters">dr</div>
+              <div class="phonetics">/dr/</div>
+              <div class="examples">drop, draw, drink, dream</div>
+            </div>
+            <div class="item">
+              <div class="letters">fl</div>
+              <div class="phonetics">/fl/</div>
+              <div class="examples">fly, flower, flag, floor</div>
+            </div>
+            <div class="item">
+              <div class="letters">fr</div>
+              <div class="phonetics">/fr/</div>
+              <div class="examples">free, from, friend, fresh</div>
+            </div>
+            <div class="item">
+              <div class="letters">gl</div>
+              <div class="phonetics">/gl/</div>
+              <div class="examples">glass, glove, glad, glow</div>
+            </div>
+            <div class="item">
+              <div class="letters">gr</div>
+              <div class="phonetics">/gr/</div>
+              <div class="examples">great, green, grow, group</div>
+            </div>
+            <div class="item">
+              <div class="letters">pl</div>
+              <div class="phonetics">/pl/</div>
+              <div class="examples">play, please, place, plan</div>
+            </div>
+            <div class="item">
+              <div class="letters">pr</div>
+              <div class="phonetics">/pr/</div>
+              <div class="examples">pray, present, price, proud</div>
+            </div>
+            <div class="item">
+              <div class="letters">sc</div>
+              <div class="phonetics">/sk/</div>
+              <div class="examples">school, score, scarf, scale</div>
+            </div>
+            <div class="item">
+              <div class="letters">sk</div>
+              <div class="phonetics">/sk/</div>
+              <div class="examples">sky, skin, skate, skip</div>
+            </div>
+            <div class="item">
+              <div class="letters">sl</div>
+              <div class="phonetics">/sl/</div>
+              <div class="examples">sleep, slow, slide, slip</div>
+            </div>
+            <div class="item">
+              <div class="letters">sm</div>
+              <div class="phonetics">/sm/</div>
+              <div class="examples">small, smile, smell, smart</div>
+            </div>
+            <div class="item">
+              <div class="letters">sn</div>
+              <div class="phonetics">/sn/</div>
+              <div class="examples">snow, snake, snap, snack</div>
+            </div>
+            <div class="item">
+              <div class="letters">sp</div>
+              <div class="phonetics">/sp/</div>
+              <div class="examples">speak, sport, space, speed</div>
+            </div>
+            <div class="item">
+              <div class="letters">st</div>
+              <div class="phonetics">/st/</div>
+              <div class="examples">stop, star, start, stand</div>
+            </div>
+            <div class="item">
+              <div class="letters">sw</div>
+              <div class="phonetics">/sw/</div>
+              <div class="examples">swim, sweet, swing, switch</div>
+            </div>
+            <div class="item">
+              <div class="letters">tr</div>
+              <div class="phonetics">/tr/</div>
+              <div class="examples">tree, train, try, track</div>
+            </div>
+            <div class="item">
+              <div class="letters">tw</div>
+              <div class="phonetics">/tw/</div>
+              <div class="examples">twin, twelve, twist, twice</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">三字母连缀 (三个辅音连读)</div>
+            <div class="item">
+              <div class="letters">str</div>
+              <div class="phonetics">/str/</div>
+              <div class="examples">street, strong, stream, straight</div>
+            </div>
+            <div class="item">
+              <div class="letters">spr</div>
+              <div class="phonetics">/spr/</div>
+              <div class="examples">spring, spread, spray, sprout</div>
+            </div>
+            <div class="item">
+              <div class="letters">spl</div>
+              <div class="phonetics">/spl/</div>
+              <div class="examples">splash, split, splendid</div>
+            </div>
+            <div class="item">
+              <div class="letters">scr</div>
+              <div class="phonetics">/skr/</div>
+              <div class="examples">screen, scream, scratch, script</div>
+            </div>
+            <div class="item">
+              <div class="letters">thr</div>
+              <div class="phonetics">/θr/</div>
+              <div class="examples">three, through, throw, thread</div>
+            </div>
+            <div class="item">
+              <div class="letters">shr</div>
+              <div class="phonetics">/ʃr/</div>
+              <div class="examples">shrimp, shrink, shrug</div>
+            </div>
+            <div class="item">
+              <div class="letters">squ</div>
+              <div class="phonetics">/skw/</div>
+              <div class="examples">square, squeeze, squirrel</div>
+            </div>
+            <div class="item">
+              <div class="letters">nth</div>
+              <div class="phonetics">/nθ/</div>
+              <div class="examples">month, ninth, tenth,enth</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">末尾双字母连缀</div>
+            <div class="item">
+              <div class="letters">ct</div>
+              <div class="phonetics">/kt/</div>
+              <div class="examples">act, fact, direct, perfect</div>
+            </div>
+            <div class="item">
+              <div class="letters">ft</div>
+              <div class="phonetics">/ft/</div>
+              <div class="examples">left, soft, gift, craft</div>
+            </div>
+            <div class="item">
+              <div class="letters">ld</div>
+              <div class="phonetics">/ld/</div>
+              <div class="examples">old, cold, field, world</div>
+            </div>
+            <div class="item">
+              <div class="letters">lf</div>
+              <div class="phonetics">/lf/</div>
+              <div class="examples">self, half, golf, shelf</div>
+            </div>
+            <div class="item">
+              <div class="letters">lk</div>
+              <div class="phonetics">/k/ (l不发音)</div>
+              <div class="examples">walk, talk, chalk, folk (已在静音字母中)</div>
+            </div>
+            <div class="item">
+              <div class="letters">lp</div>
+              <div class="phonetics">/lp/</div>
+              <div class="examples">help, kelp, scalp, gulp</div>
+            </div>
+            <div class="item">
+              <div class="letters">lt</div>
+              <div class="phonetics">/lt/</div>
+              <div class="examples">salt, melt, belt, built</div>
+            </div>
+            <div class="item">
+              <div class="letters">mp</div>
+              <div class="phonetics">/mp/</div>
+              <div class="examples">jump, lamp, camp, stamp</div>
+            </div>
+            <div class="item">
+              <div class="letters">nd</div>
+              <div class="phonetics">/nd/</div>
+              <div class="examples">hand, sand, find, ground</div>
+            </div>
+            <div class="item">
+              <div class="letters">nt</div>
+              <div class="phonetics">/nt/</div>
+              <div class="examples">want, plant, front, spent</div>
+            </div>
+            <div class="item">
+              <div class="letters">pt</div>
+              <div class="phonetics">/pt/</div>
+              <div class="examples">kept, slept, accept, adopt</div>
+            </div>
+            <div class="item">
+              <div class="letters">rd</div>
+              <div class="phonetics">/rd/</div>
+              <div class="examples">card, hard, bird, word</div>
+            </div>
+            <div class="item">
+              <div class="letters">rk</div>
+              <div class="phonetics">/rk/</div>
+              <div class="examples">park, work, fork, dark</div>
+            </div>
+            <div class="item">
+              <div class="letters">rn</div>
+              <div class="phonetics">/rn/</div>
+              <div class="examples">turn, corn, born, learn</div>
+            </div>
+            <div class="item">
+              <div class="letters">rt</div>
+              <div class="phonetics">/rt/</div>
+              <div class="examples">art, start, hurt, court</div>
+            </div>
+            <div class="item">
+              <div class="letters">sk</div>
+              <div class="phonetics">/sk/</div>
+              <div class="examples">ask, desk, task, risk</div>
+            </div>
+            <div class="item">
+              <div class="letters">sp</div>
+              <div class="phonetics">/sp/</div>
+              <div class="examples">wasp, grasp, crisp, clasp</div>
+            </div>
+            <div class="item">
+              <div class="letters">st</div>
+              <div class="phonetics">/st/</div>
+              <div class="examples">fast, last, best, trust</div>
+            </div>
+            <div class="item">
+              <div class="letters">xt</div>
+              <div class="phonetics">/kst/</div>
+              <div class="examples">next, text, context</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 48个国际音标 -->
+        <div class="card blue">
+          <div class="card-title">48个国际音标</div>
+
+          <div class="section-wrapper">
+            <div class="section-header">单元音 (12个) - 发音时口型不变</div>
+            <div class="item">
+              <div class="letters">/iː/</div>
+              <div class="phonetics">长元音 (ee, ea, e, ie, ei)</div>
+              <div class="examples">see, tea, me, piece, receive</div>
+            </div>
+            <div class="item">
+              <div class="letters">/ɪ/</div>
+              <div class="phonetics">短元音 (i, y, ui, e)</div>
+              <div class="examples">sit, happy, build, pretty</div>
+            </div>
+            <div class="item">
+              <div class="letters">/e/</div>
+              <div class="phonetics">短元音 (e, ea, a)</div>
+              <div class="examples">bed, bread, many</div>
+            </div>
+            <div class="item">
+              <div class="letters">/æ/</div>
+              <div class="phonetics">短元音 (a)</div>
+              <div class="examples">cat, bad, hat, map</div>
+            </div>
+            <div class="item">
+              <div class="letters">/ɑː/</div>
+              <div class="phonetics">长元音 (ar, a, au)</div>
+              <div class="examples">car, father, laugh</div>
+            </div>
+            <div class="item">
+              <div class="letters">/ɒ/</div>
+              <div class="phonetics">短元音 (o, a)</div>
+              <div class="examples">dog, hot, want</div>
+            </div>
+            <div class="item">
+              <div class="letters">/ɔː/</div>
+              <div class="phonetics">长元音 (or, aw, au, ough, oar)</div>
+              <div class="examples">door, saw, autumn, bought, board</div>
+            </div>
+            <div class="item">
+              <div class="letters">/ʊ/</div>
+              <div class="phonetics">短元音 (oo, u, ou)</div>
+              <div class="examples">book, put, could</div>
+            </div>
+            <div class="item">
+              <div class="letters">/uː/</div>
+              <div class="phonetics">长元音 (oo, ue, ui, ew, ou, u_e)</div>
+              <div class="examples">food, blue, fruit, new, soup, tube</div>
+            </div>
+            <div class="item">
+              <div class="letters">/ʌ/</div>
+              <div class="phonetics">短元音 (u, o, ou, oo)</div>
+              <div class="examples">cup, son, country, blood</div>
+            </div>
+            <div class="item">
+              <div class="letters">/ɜː/</div>
+              <div class="phonetics">长元音 (er, ir, ur, ear, or)</div>
+              <div class="examples">her, bird, turn, learn, work</div>
+            </div>
+            <div class="item">
+              <div class="letters">/ə/</div>
+              <div class="phonetics">央元音-弱读 (a, e, o, u, er, ar, or)</div>
+              <div class="examples">about, the, second, circus, teacher</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">双元音 (8个) - 发音时口型变化</div>
+            <div class="item">
+              <div class="letters">/eɪ/</div>
+              <div class="phonetics">双元音 (ai, ay, a_e, ei, ey, ea, eigh)</div>
+              <div class="examples">rain, day, make, vein, they, great, eight</div>
+            </div>
+            <div class="item">
+              <div class="letters">/aɪ/</div>
+              <div class="phonetics">双元音 (i, y, ie, igh, i_e, ei)</div>
+              <div class="examples">find, my, lie, high, time, height</div>
+            </div>
+            <div class="item">
+              <div class="letters">/ɔɪ/</div>
+              <div class="phonetics">双元音 (oi, oy)</div>
+              <div class="examples">coin, boy, noise, toy</div>
+            </div>
+            <div class="item">
+              <div class="letters">/aʊ/</div>
+              <div class="phonetics">双元音 (ou, ow, ough)</div>
+              <div class="examples">house, now, plough</div>
+            </div>
+            <div class="item">
+              <div class="letters">/əʊ/</div>
+              <div class="phonetics">双元音 (o, oa, ow, o_e, ou, ough)</div>
+              <div class="examples">go, boat, know, home, soul, though</div>
+            </div>
+            <div class="item">
+              <div class="letters">/ɪə/</div>
+              <div class="phonetics">双元音 (ear, eer, ere, ea)</div>
+              <div class="examples">hear, beer, here, idea</div>
+            </div>
+            <div class="item">
+              <div class="letters">/eə/</div>
+              <div class="phonetics">双元音 (air, are, ear, ere)</div>
+              <div class="examples">hair, care, bear, there</div>
+            </div>
+            <div class="item">
+              <div class="letters">/ʊə/</div>
+              <div class="phonetics">双元音 (oor, our, ure)</div>
+              <div class="examples">poor, tour, pure</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">清辅音 (11个) - 声带不振动</div>
+            <div class="item">
+              <div class="letters">/p/</div>
+              <div class="phonetics">爆破音 (p, pp)</div>
+              <div class="examples">pen, cup, happy, stop</div>
+            </div>
+            <div class="item">
+              <div class="letters">/t/</div>
+              <div class="phonetics">爆破音 (t, tt, -ed)</div>
+              <div class="examples">tea, cat, better, walked</div>
+            </div>
+            <div class="item">
+              <div class="letters">/k/</div>
+              <div class="phonetics">爆破音 (k, c, ck, ch, qu, q)</div>
+              <div class="examples">king, cat, back, school, queen, Iraq</div>
+            </div>
+            <div class="item">
+              <div class="letters">/f/</div>
+              <div class="phonetics">摩擦音 (f, ff, ph, gh)</div>
+              <div class="examples">fish, off, phone, laugh</div>
+            </div>
+            <div class="item">
+              <div class="letters">/θ/</div>
+              <div class="phonetics">摩擦音 (th)</div>
+              <div class="examples">think, three, tooth, mouth</div>
+            </div>
+            <div class="item">
+              <div class="letters">/s/</div>
+              <div class="phonetics">摩擦音 (s, ss, c, ce, sc)</div>
+              <div class="examples">sit, class, city, ice, science</div>
+            </div>
+            <div class="item">
+              <div class="letters">/ʃ/</div>
+              <div class="phonetics">摩擦音 (sh, ch, ti, ci, si)</div>
+              <div class="examples">she, machine, nation, special, mission</div>
+            </div>
+            <div class="item">
+              <div class="letters">/tʃ/</div>
+              <div class="phonetics">破擦音 (ch, tch, t)</div>
+              <div class="examples">chair, watch, picture</div>
+            </div>
+            <div class="item">
+              <div class="letters">/ts/</div>
+              <div class="phonetics">破擦音 (ts, -tes, -ts)</div>
+              <div class="examples">cats, writes, students</div>
+            </div>
+            <div class="item">
+              <div class="letters">/tr/</div>
+              <div class="phonetics">破擦音 (tr)</div>
+              <div class="examples">tree, train, try, street</div>
+            </div>
+            <div class="item">
+              <div class="letters">/h/</div>
+              <div class="phonetics">摩擦音 (h, wh)</div>
+              <div class="examples">hot, house, who</div>
+            </div>
+          </div>
+
+          <div class="section-wrapper">
+            <div class="section-header">浊辅音 (17个) - 声带振动</div>
+            <div class="item">
+              <div class="letters">/b/</div>
+              <div class="phonetics">爆破音 (b, bb)</div>
+              <div class="examples">bee, book, rabbit, cab</div>
+            </div>
+            <div class="item">
+              <div class="letters">/d/</div>
+              <div class="phonetics">爆破音 (d, dd, -ed)</div>
+              <div class="examples">dog, add, played</div>
+            </div>
+            <div class="item">
+              <div class="letters">/g/</div>
+              <div class="phonetics">爆破音 (g, gg, gh, gu)</div>
+              <div class="examples">go, egg, ghost, guess</div>
+            </div>
+            <div class="item">
+              <div class="letters">/v/</div>
+              <div class="phonetics">摩擦音 (v, ve, f)</div>
+              <div class="examples">van, five, of</div>
+            </div>
+            <div class="item">
+              <div class="letters">/ð/</div>
+              <div class="phonetics">摩擦音 (th)</div>
+              <div class="examples">this, that, them, mother</div>
+            </div>
+            <div class="item">
+              <div class="letters">/z/</div>
+              <div class="phonetics">摩擦音 (z, zz, s, se, -s)</div>
+              <div class="examples">zoo, buzz, please, rose, dogs</div>
+            </div>
+            <div class="item">
+              <div class="letters">/ʒ/</div>
+              <div class="phonetics">摩擦音 (s, si, ge, su)</div>
+              <div class="examples">vision, Asia, beige, measure</div>
+            </div>
+            <div class="item">
+              <div class="letters">/dʒ/</div>
+              <div class="phonetics">破擦音 (j, g, ge, dge, dj)</div>
+              <div class="examples">jump, age, orange, bridge, adjust</div>
+            </div>
+            <div class="item">
+              <div class="letters">/dz/</div>
+              <div class="phonetics">破擦音 (-ds, -des)</div>
+              <div class="examples">beds, cards, reads</div>
+            </div>
+            <div class="item">
+              <div class="letters">/dr/</div>
+              <div class="phonetics">破擦音 (dr)</div>
+              <div class="examples">drive, dream, drop, dry</div>
+            </div>
+            <div class="item">
+              <div class="letters">/m/</div>
+              <div class="phonetics">鼻音 (m, mm, mb, mn)</div>
+              <div class="examples">man, summer, climb, autumn</div>
+            </div>
+            <div class="item">
+              <div class="letters">/n/</div>
+              <div class="phonetics">鼻音 (n, nn, kn, gn, pn)</div>
+              <div class="examples">no, sunny, know, sign, pneumonia</div>
+            </div>
+            <div class="item">
+              <div class="letters">/ŋ/</div>
+              <div class="phonetics">鼻音 (ng, n+k, n+g)</div>
+              <div class="examples">sing, bank, uncle</div>
+            </div>
+            <div class="item">
+              <div class="letters">/l/</div>
+              <div class="phonetics">边音 (l, ll)</div>
+              <div class="examples">let, love, all, ball</div>
+            </div>
+            <div class="item">
+              <div class="letters">/r/</div>
+              <div class="phonetics">近音 (r, rr, wr, rh)</div>
+              <div class="examples">red, sorry, write, rhythm</div>
+            </div>
+            <div class="item">
+              <div class="letters">/w/</div>
+              <div class="phonetics">半元音 (w, wh, u)</div>
+              <div class="examples">we, what, queen</div>
+            </div>
+            <div class="item">
+              <div class="letters">/j/</div>
+              <div class="phonetics">半元音 (y, u, i)</div>
+              <div class="examples">yes, use, onion</div>
+            </div>
           </div>
         </div>
       </div>
